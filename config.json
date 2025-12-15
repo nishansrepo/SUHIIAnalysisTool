@@ -1,0 +1,86 @@
+{
+  "_comment": "SUHII Analysis Configuration - See technical documentation for full details",
+  
+  "paths": {
+    "input_dir": "data",
+    "output_dir": "analysis_results",
+    "lst_file": "lst.tif",
+    "lulc_file": "lulc.tif",
+    "ndvi_file": "ndvi.tif",
+    "dem_file": "elevation.tif",
+    "boundary_file": "boundary.geojson"
+  },
+
+  "lst_units": "celsius",
+  "_lst_units_options": "celsius | kelvin | celsius_scaled (C × 100)",
+
+  "urban_selection": {
+    "method": "lulc_ndvi",
+    "_method_options": "lulc | ndvi | lulc_ndvi",
+    "_method_descriptions": {
+      "lulc": "Pure LULC classification only",
+      "ndvi": "NDVI threshold only - WARNING: may include bare soil",
+      "lulc_ndvi": "LULC + NDVI filter to exclude parks/vegetation"
+    },
+    "urban_classes": [6],
+    "_urban_classes_note": "Dynamic World: 6=Built Area. ESA WorldCover: 50=Built-up",
+    "water_class": 0,
+    "nodata_value": 255,
+    "ndvi_max_threshold": 0.3,
+    "_ndvi_max_note": "For lulc_ndvi method: pixels with NDVI >= this are excluded (removes parks)"
+  },
+
+  "rural_selection": {
+    "method": "buffer",
+    "_method_options": "buffer | halo | three_rings | incity",
+    "_method_descriptions": {
+      "buffer": "Fixed width ring around city boundary",
+      "halo": "Skip urban footprint zone, then buffer",
+      "three_rings": "Dynamic widths based on sqrt(area): Ua/FUa/PUa zones",
+      "incity": "Non-urban pixels inside boundary"
+    },
+    "buffer_params": {
+      "fixed_width_m": 10000.0,
+      "min_distance_from_edge_m": 2000.0,
+      "_min_distance_note": "For 'halo' method: inner exclusion zone width",
+      "ring_type": "ua",
+      "_ring_type_options": "ua | fua | pua (for three_rings method only)",
+      "min_rural_distance_m": 0.0,
+      "_min_rural_distance_note": "For buffer/three_rings: exclude rural pixels closer than this to urban edge"
+    },
+    "vegetation_ndvi_threshold": 0.3,
+    "_vegetation_note": "Rural pixels must have NDVI >= this value",
+    "exclude_urban_lulc_classes": true
+  },
+
+  "filters": {
+    "mask_water": true,
+    "use_elevation_correction": true,
+    "elevation_params": {
+      "initial_tolerance_m": 50.0,
+      "max_tolerance_m": 500.0,
+      "step_m": 50.0,
+      "min_valid_pixels": 100,
+      "_note": "Filters rural pixels to within ±initial_tolerance_m of urban mean elevation. Expands tolerance incrementally if insufficient pixels found."
+    }
+  },
+
+  "resampling": {
+    "lst": "nearest",
+    "ndvi": "bilinear",
+    "dem": "bilinear",
+    "_options": "nearest | bilinear",
+    "_recommendations": {
+      "lst": "nearest - preserves actual measured radiometric values (recommended)",
+      "ndvi": "bilinear - smooths continuous vegetation index",
+      "dem": "bilinear - smooths continuous elevation surface",
+      "lulc": "nearest - always used for categorical data (not configurable)"
+    },
+    "_scientific_note": "Bilinear interpolation creates artificial intermediate values at boundaries. For LST at urban-rural edges, this can underestimate the true temperature gradient."
+  },
+
+  "outputs": {
+    "generate_debug_plots": true,
+    "_debug_plots_note": "When true, generates diagnostic visualizations in debug_plots/ subdirectory"
+  }
+}
