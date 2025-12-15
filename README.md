@@ -19,7 +19,7 @@ This tool quantifies the urban heat island effect by comparing Land Surface Temp
 pip install numpy geopandas rasterio scipy matplotlib
 ```
 
-**Requirements:** Python 3.8+
+**Requirements:** Python 3.11+
 
 ## Quick Start
 
