@@ -34,7 +34,7 @@ Primary References:
 - Raj & Yun (2024): Buffer vs incity comparison, elevation filtering
 - Fernandes et al. (2024): Three-ring zone formulas (Ua/FUa/PUa)
 
-Author: shan Sah, Sakina Mammadova, Nandita Kannapadi, Gabe Hafemann, Zoe Baker 
+Author: Nishan Sah, Sakina Mammadova, Nandita Kannapadi, Gabe Hafemann, Zoe Baker 
 Date: December 2025
 """
 
