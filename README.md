@@ -96,7 +96,7 @@ python suhii_tool.py --generate-config config.json
 
 | Parameter | Options | Description |
 |-----------|---------|-------------|
-| `urban_selection.method` | `lulc`, `ndvi`, `lulc_ndvi` | How to define urban pixels. `lulc_ndvi` recommended. |
+| `urban_selection.method` | `lulc`, `ndvi`, `lulc_ndvi` | How to define urban pixels. |
 | `rural_selection.method` | `buffer`, `halo`, `three_rings`, `incity` | How to define rural reference area. |
 | `lst_units` | `celsius`, `kelvin`, `celsius_scaled` | Input LST format. |
 | `filters.use_elevation_correction` | `true`/`false` | Filter rural pixels by elevation (±50m default). |
