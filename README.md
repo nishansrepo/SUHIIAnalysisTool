@@ -4,7 +4,7 @@ A Python tool for calculating Surface Urban Heat Island Intensity (SUHII) from s
 
 ## What It Does
 
-This tool quantifies the urban heat island effect by comparing Land Surface Temperature (LST) between urban and rural areas. It supports multiple peer-reviewed methodologies for defining urban cores and rural references, making results comparable across studies.
+This tool quantifies the urban heat island effect by comparing Land Surface Temperature (LST) between urban and rural areas. It supports multiple peer-reviewed methodologies for defining urban cores and rural references, making results comparable across studies. [View complete documentation here](./SUHII_Analysis_Tool_Technical_Document.pdf)
 
 **Key Features:**
 - Three urban definition methods: LULC-based, NDVI-based, or combined LULC+NDVI
