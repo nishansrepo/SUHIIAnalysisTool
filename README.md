@@ -140,6 +140,3 @@ python suhii_tool.py --generate-config config.json
 - Raj & Yun (2024) — Buffer method, elevation filtering, incity comparison
 - Fernandes et al. (2024) — Three-ring zone formulas
 - Ahmad et al. (2024) — Normalized UHI metric
-## Author
-
-Nishan Sah, Carnegie Mellon University
